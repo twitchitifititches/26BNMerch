@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26th Batallion Merch Drive</title>
+    <!-- Telegram SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Merch Store</h1>
+        <div id="product-list">
+            <div class="product">
+                <span>Cool Hat - $20</span>
+                <button onclick="addToCart(20)">Add</button>
+            </div>
+            <div class="product">
+                <span>Epic Shirt - $35</span>
+                <button onclick="addToCart(35)">Add</button>
+            </div>
+        </div>
+        <div id="cart">
+            <h3>Total: $<span id="total">0</span></h3>
+            <button id="checkout" onclick="sendToTelegram()">Checkout</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
