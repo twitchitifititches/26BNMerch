@@ -1,0 +1,42 @@
+name: Monthly Merch Report
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Runs at midnight on the 1st of every month
+  workflow_dispatch: # Allows YOU to trigger it manually for testing
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Create CSV from Inventory
+        run: |
+          python - <<EOF
+          import json
+          import csv
+          from datetime import datetime
+
+          with open('inventory.json', 'r') as f:
+              data = json.load(f)
+          
+          orders = data.get('orders', [])
+          filename = f"merch_report_{datetime.now().strftime('%Y_%m')}.csv"
+          
+          with open(filename, 'w', newline='') as f:
+              writer = csv.writer(f)
+              writer.writerow(['Date', 'Customer', 'Items', 'Total'])
+              for o in orders:
+                  items_str = ", ".join([f"{i['name']} (x{i['quantity']})" for i in o['items']])
+                  writer.writerow([o.get('timestamp', 'N/A'), o['customer'], items_str, o['total']])
+          EOF
+
+      - name: Send CSV to Merchandiser
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          MERCH_CHAT_ID: ${{ secrets.MERCHANDISER_CHAT_ID }}
+        run: |
+          FILENAME=$(ls merch_report_*.csv)
+          curl -v -F "chat_id=$MERCH_CHAT_ID" -F "document=@$FILENAME" -F "caption=Monthly Merch Report for $(date +%B)" \
+          https://api.telegram.org
