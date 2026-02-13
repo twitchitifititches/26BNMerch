@@ -4,7 +4,7 @@ let total = 0;
 // YOUR CONFIGURATION - Replace with your details
 const GITHUB_USER = "twitchitifititches";
 const REPO_NAME = "26th-bn-merch";
-const GITHUB_PAT = "YOUR_PERSONAL_ACCESS_TOKEN"; // Keep this safe!
+const GITHUB_PAT = "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"; // Keep this safe!
 
 function addToCart(price, inputId, productName) {
     const qtyInput = document.getElementById(inputId);
@@ -91,4 +91,5 @@ async function submitOrder() {
         tg.showAlert("Connection failed. Check your internet.");
     }
 }
+
 
