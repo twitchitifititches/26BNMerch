@@ -1,10 +1,10 @@
 let cart = [];
 let total = 0;
 
-// CONFIGURATION
-const GITHUB_USER = "YOUR_GITHUB_USERNAME";
-const REPO_NAME = "26th-bn-merch";
-const GITHUB_PAT = "YOUR_PERSONAL_ACCESS_TOKEN";
+// FINAL CONFIGURATION
+const GITHUB_USER = "twitchitifititches"; 
+const REPO_NAME = "26BNMerch"; 
+const GITHUB_PAT = "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";
 
 function addToCart(price, inputId, productName) {
     const qtyInput = document.getElementById(inputId);
@@ -18,24 +18,7 @@ function addToCart(price, inputId, productName) {
     }
 
     updateCartUI();
-    qtyInput.value = 1; // Reset input field after adding
-}
-
-function removeFromCart(productName) {
-    cart = cart.filter(item => item.name !== productName);
-    updateCartUI();
-}
-
-function updateQuantity(productName, amount) {
-    const item = cart.find(item => item.name === productName);
-    if (item) {
-        item.quantity += amount;
-        if (item.quantity <= 0) {
-            removeFromCart(productName);
-        } else {
-            updateCartUI();
-        }
-    }
+    qtyInput.value = 1;
 }
 
 function updateCartUI() {
@@ -47,25 +30,20 @@ function updateCartUI() {
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-
         const li = document.createElement('li');
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
-        li.style.margin = "10px 0";
-        
+        li.className = "cart-item";
         li.innerHTML = `
             <span>${item.name} (x${item.quantity}) - $${itemTotal}</span>
-            <div>
-                <button onclick="updateQuantity('${item.name}', -1)">-</button>
-                <button onclick="updateQuantity('${item.name}', 1)">+</button>
-                <button onclick="removeFromCart('${item.name}')" style="background: #dc3545; margin-left: 5px;">Remove</button>
-            </div>
+            <button onclick="removeFromCart('${item.name}')" style="background:#cc0000; padding:4px 8px; font-size:10px; border-radius:4px; border:none; color:white;">Remove</button>
         `;
         cartList.appendChild(li);
     });
-
     totalDisplay.innerText = total;
+}
+
+function removeFromCart(productName) {
+    cart = cart.filter(item => item.name !== productName);
+    updateCartUI();
 }
 
 async function submitOrder() {
@@ -82,26 +60,23 @@ async function submitOrder() {
     try {
         const response = await fetch(`https://api.github.com{GITHUB_USER}/${REPO_NAME}/dispatches`, {
             method: 'POST',
-            headers: {
-                'Authorization': `token ${GITHUB_PAT}`,
+            headers: { 
+                'Authorization': `token ${GITHUB_PAT}`, 
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                event_type: 'new_order',
-                client_payload: orderData
-            })
+            body: JSON.stringify({ event_type: 'new_order', client_payload: orderData })
         });
 
         if (response.ok) {
-            tg.showAlert("Order Sent! Payment due at next FTX.");
+            tg.showAlert("Order Sent! Payment due to Capt. Pope at FTX.");
             cart = [];
             updateCartUI();
             tg.close();
         } else {
-            tg.showAlert("Error sending order. Please try again.");
+            tg.showAlert("Failed to send. Check GitHub Repo settings.");
         }
-    } catch (error) {
-        tg.showAlert("Connection failed.");
+    } catch (e) {
+        tg.showAlert("Error: " + e.message);
     }
 }
