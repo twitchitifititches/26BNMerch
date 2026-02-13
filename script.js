@@ -49,7 +49,6 @@ function removeFromCart(productName) {
 async function submitOrder() {
     if (cart.length === 0) return;
     
-    // Check if we are inside Telegram, otherwise use "Guest"
     const tg = window.Telegram ? window.Telegram.WebApp : null;
     const customerName = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? (tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name) : "Guest";
     
@@ -61,11 +60,11 @@ async function submitOrder() {
     };
 
     try {
-        // Corrected GitHub API URL
         const apiUrl = `https://api.github.com{GITHUB_USER}/${REPO_NAME}/dispatches`;
 
         const response = await fetch(apiUrl, {
             method: 'POST',
+            mode: 'cors',
             headers: { 
                 'Authorization': `token ${GITHUB_PAT}`, 
                 'Accept': 'application/vnd.github.v3+json',
@@ -75,27 +74,30 @@ async function submitOrder() {
         });
 
         if (response.ok) {
+            const successMsg = "Order Sent! Payment due to Capt. Pope at FTX.";
             if (tg) {
-                tg.showAlert("Order Sent! Payment due to Capt. Pope at FTX.");
+                tg.showAlert(successMsg);
                 tg.close();
             } else {
-                alert("Order Sent! Payment due to Capt. Pope at FTX.");
+                alert(successMsg);
             }
             cart = [];
             updateCartUI();
         } else {
             const errorText = await response.text();
+            const errorMsg = "Failed to send. Status: " + response.status;
             if (tg) {
-                tg.showAlert("Failed to send. Error: " + response.status);
+                tg.showAlert(errorMsg);
             } else {
-                alert("Failed to send. Error: " + response.status + " - " + errorText);
+                alert(errorMsg + " - " + errorText);
             }
         }
     } catch (e) {
+        const connError = "Connection Error: " + e.message;
         if (tg) {
-            tg.showAlert("Connection Error: " + e.message);
+            tg.showAlert(connError);
         } else {
-            alert("Connection Error: " + e.message);
+            alert(connError);
         }
     }
 }
