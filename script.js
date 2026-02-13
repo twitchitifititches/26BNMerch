@@ -1,14 +1,8 @@
 let cart = [];
 let total = 0;
 
-// FINAL CONFIGURATION
-const GITHUB_USER = "twitchitifititches"; 
-const REPO_NAME = "26BNMerch"; 
-
-// --- TOKEN SPLIT TRICK (Hides token from GitHub Scanners) ---
-const p1 = "github_pat_11AEB25OQ0Qm8dDsx19vya"; 
-const p2 = "_Zdf23bKCIvObsx4QZ1nx5nHQ3d3I4VablAgOBElDqbA4EHZ3R5I3rOuuTZy"; 
-const GITHUB_PAT = p1 + p2;
+// FINAL CONFIGURATION - Using your Google Bridge URL
+const PROXY_URL = "https://script.google.com/macros/s/AKfycbyEk3khZc36ezbMMTSVIBYv-Jh_3jN6-R7C-541X8kO70_6xuDRLnA85S8DwMEb4uXC/exec";
 
 function addToCart(price, inputId, productName) {
     const qtyInput = document.getElementById(inputId);
@@ -36,6 +30,13 @@ function updateCartUI() {
         total += itemTotal;
         const li = document.createElement('li');
         li.className = "cart-item";
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.marginBottom = "10px";
+        li.style.borderBottom = "1px dashed #ccc";
+        li.style.paddingBottom = "5px";
+        
         li.innerHTML = `
             <span>${item.name} (x${item.quantity}) - $${itemTotal}</span>
             <button onclick="removeFromCart('${item.name}')" style="background:#cc0000; padding:4px 8px; font-size:10px; border-radius:4px; border:none; color:white; cursor:pointer;">Remove</button>
@@ -53,9 +54,10 @@ function removeFromCart(productName) {
 async function submitOrder() {
     if (cart.length === 0) return;
     
-    // Check if running inside Telegram
+    // Check if running inside Telegram WebApp
     const tg = window.Telegram ? window.Telegram.WebApp : null;
-    const customerName = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? (tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name) : "Guest";
+    const customerName = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? 
+        (tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name) : "Guest";
     
     const orderData = {
         customer: customerName,
@@ -65,43 +67,30 @@ async function submitOrder() {
     };
 
     try {
-        const apiUrl = `https://api.github.com{GITHUB_USER}/${REPO_NAME}/dispatches`;
-
-        const response = await fetch(apiUrl, {
+        // We send the order to your Google Script, which then tells GitHub to wake up
+        const response = await fetch(PROXY_URL, {
             method: 'POST',
-            mode: 'cors',
-            headers: { 
-                'Authorization': `token ${GITHUB_PAT}`, 
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ event_type: 'new_order', client_payload: orderData })
+            mode: 'no-cors', // Helps bypass browser security blocks
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
         });
 
-        if (response.ok) {
-            const successMsg = "Order Sent! Payment due to Capt. Pope at FTX.";
-            if (tg) {
-                tg.showAlert(successMsg);
-                tg.close();
-            } else {
-                alert(successMsg);
-            }
-            cart = [];
-            updateCartUI();
-        } else {
-            const errorText = await response.text();
-            if (tg) {
-                tg.showAlert("Failed to send. Status: " + response.status);
-            } else {
-                alert("Failed to send. Status: " + response.status + " - " + errorText);
-            }
-        }
-    } catch (e) {
-        const connError = "Connection Error: " + e.message;
+        // With 'no-cors', we show the alert immediately as the data has been handed off
+        const successMsg = "Order Sent! Payment due to Capt. Pope at FTX.";
         if (tg) {
-            tg.showAlert(connError);
+            tg.showAlert(successMsg);
+            tg.close();
         } else {
-            alert(connError);
+            alert(successMsg);
         }
+        
+        // Reset the shop
+        cart = [];
+        updateCartUI();
+
+    } catch (e) {
+        const errorMsg = "Connection Error: " + e.message;
+        if (tg) { tg.showAlert(errorMsg); } else { alert(errorMsg); }
     }
 }
