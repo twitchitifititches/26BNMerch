@@ -9,43 +9,42 @@
 </head>
 <body>
 <div id="app">
-    <div class="logo-header"><div id="main-logo"></div></div>
     <h1>26th BN Merch Store</h1>
     
     <div id="product-list">
         <div class="product">
-            <span>Epic Shirt - $35</span>
-            <div>
-                <input type="number" id="qty-shirt" value="1" min="1" style="width: 40px;">
+            <span class="product-info">Epic Shirt - $35</span>
+            <div class="controls">
+                <input type="number" id="qty-shirt" value="1" min="1">
                 <button onclick="addToCart(35, 'qty-shirt', 'Epic Shirt')">Add</button>
             </div>
         </div>
         <div class="product">
-            <span>Hoodie - $50</span>
-            <div>
-                <input type="number" id="qty-hoodie" value="1" min="1" style="width: 40px;">
+            <span class="product-info">Hoodie - $50</span>
+            <div class="controls">
+                <input type="number" id="qty-hoodie" value="1" min="1">
                 <button onclick="addToCart(50, 'qty-hoodie', 'Hoodie')">Add</button>
             </div>
         </div>
         <div class="product">
-            <span>Ball Cap - $25</span>
-            <div>
-                <input type="number" id="qty-cap" value="1" min="1" style="width: 40px;">
+            <span class="product-info">Ball Cap - $25</span>
+            <div class="controls">
+                <input type="number" id="qty-cap" value="1" min="1">
                 <button onclick="addToCart(25, 'qty-cap', 'Ball Cap')">Add</button>
             </div>
         </div>
     </div>
 
-    <div id="cart">
-        <h3>Your Cart</h3>
-        <ul id="cart-items" style="list-style: none; padding: 0;"></ul>
-        <hr>
-        <p id="delivery-msg" style="font-size: 0.85em; font-style: italic; color: #555; margin-bottom: 15px;">
-            All orders will be delivered during the next available FTX. Payments due in full and payable to Capt. Pope or in his absence LT. Kam.
-        </p>
-        <h3>Total: $<span id="total">0</span></h3>
-        <button id="checkout" onclick="submitOrder()">SUBMIT ORDER</button>
-    </div>
+    <hr>
+    <h3>Your Cart</h3>
+    <ul id="cart-items" style="list-style: none; padding: 0;"></ul>
+    
+    <p id="delivery-msg">
+        All orders will be delivered during the next available FTX. Payments due in full and payable to Capt. Pope or in his absence LT. Kam.
+    </p>
+    
+    <h3>Total: $<span id="total">0</span></h3>
+    <button id="checkout" onclick="submitOrder()">SUBMIT ORDER</button>
 </div>
 <script src="script.js"></script>
 </body>
