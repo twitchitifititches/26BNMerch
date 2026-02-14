@@ -1,13 +1,46 @@
 {
   "items": [
     {
-      "id": "shirt",
+      "id": "shirt#1",
       "name": "Green 26 BN T",
       "description": "100% cotton battalion tee.",
-      "price": 35,
-      "stock": 60,
+      "price": 15,
       "threshold": 10,
       "image": "https://i.imgur.com/cg1nJ7e.png",
+      "sizes": {
+        "S": 2,
+        "M": 3,
+        "L": 10,
+        "XL": 10,
+        "2XL": 10,
+        "3XL": 5
+      },
+      "stock": 40
+    },
+    {
+      "id": "hoodie",
+      "name": "Heavyweight Olive Drab Hoodie",
+      "description": "Heavyweight olive drab hoodie with distress American flag..",
+      "price": 40,
+      "threshold": 5,
+      "image": "https://i.imgur.com/QWCcIyl.png",
+      "sizes": {
+        "S": 2,
+        "M": 3,
+        "L": 10,
+        "XL": 10,
+        "2XL": 10,
+        "3XL": 5
+      },
+      "stock": 40
+    },
+    {
+      "id": "shirt",
+      "name": "Green 26 BN Tee",
+      "description": "100% cotton 1776 Gree Tee with white flag",
+      "price": 35,
+      "threshold": 10,
+      "image": "https://i.imgur.com/E8IvDlp.png",
       "sizes": {
         "S": 8,
         "M": 12,
@@ -15,43 +48,26 @@
         "XL": 12,
         "2XL": 6,
         "3XL": 6
-      }
+      },
+      "stock": 60
     },
     {
-      "id": "hoodie",
-      "name": "Heavyweight Olive Drab Hoodie",
-      "description": "Heavyweight olive drab hoodie.",
-      "price": 50,
-      "stock": 40,
-      "threshold": 6,
-      "image": "https://i.imgur.com/cg1nJ7e.png",
+      "id": "Beanie#1",
+      "name": "Battalion Beanie",
+      "description": "Olive Green Beanie with 26th Battalion Insignia (One Size)",
+      "price": 10,
+      "threshold": 5,
+      "image": "https://i.imgur.com/jcRiryv.png",
       "sizes": {
-        "S": 5,
-        "M": 8,
-        "L": 10,
-        "XL": 8,
-        "2XL": 5,
-        "3XL": 4
-      }
-    },
-    {
-      "id": "potato",
-      "name": "Potato",
-      "description": "Potato.",
-      "price": 4,
-      "stock": 10,
-      "threshold": 2,
-      "image": "",
-      "sizes": {
-        "S": 2,
-        "M": 2,
-        "L": 2,
-        "XL": 2,
-        "2XL": 1,
-        "3XL": 1
-      }
+        "S": 0,
+        "M": 0,
+        "L": 30,
+        "XL": 0,
+        "2XL": 0,
+        "3XL": 0
+      },
+      "stock": 30
     }
   ],
-
   "orders": []
 }
