@@ -26,6 +26,24 @@
       "stock": 20,
       "threshold": 5,
       "image": "https://imgur.com/cg1nJ7e"
+    },
+    {
+      "id": "AmericanFlag #1",
+      "name": "250 year American Flag",
+      "description": "Celebrate American Pride with this high quality wall flag",
+      "price": 75,
+      "stock": 10,
+      "threshold": 2,
+      "image": "https://imgur.com/p09CXKy"
+    },
+    {
+      "id": "beanie#1",
+      "name": "Battalion Beanie",
+      "description": "Green Battalion insignia beanie. Keeps your dome warm",
+      "price": 15,
+      "stock": 20,
+      "threshold": 5,
+      "image": "https://imgur.com/DbrSy7d"
     }
   ],
   "orders": []
