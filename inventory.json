@@ -1,50 +1,57 @@
 {
   "items": [
     {
-      "id": "Hoodie #1",
-      "name": "Green Flag Hoodie",
-      "description": "Heavyweight olive drab hoodie featuring distressed American flag",
+      "id": "shirt",
+      "name": "Green 26 BN T",
+      "description": "100% cotton battalion tee.",
+      "price": 35,
+      "stock": 60,
+      "threshold": 10,
+      "image": "https://i.imgur.com/cg1nJ7e.png",
+      "sizes": {
+        "S": 8,
+        "M": 12,
+        "L": 16,
+        "XL": 12,
+        "2XL": 6,
+        "3XL": 6
+      }
+    },
+    {
+      "id": "hoodie",
+      "name": "Heavyweight Olive Drab Hoodie",
+      "description": "Heavyweight olive drab hoodie.",
       "price": 50,
-      "stock": 20,
-      "threshold": 3,
-      "image": "https://i.imgur.com/QWCcIyl.png"
+      "stock": 40,
+      "threshold": 6,
+      "image": "https://i.imgur.com/cg1nJ7e.png",
+      "sizes": {
+        "S": 5,
+        "M": 8,
+        "L": 10,
+        "XL": 8,
+        "2XL": 5,
+        "3XL": 4
+      }
     },
     {
-      "id": "Shirt #1",
-      "name": "Founders Green T",
-      "description": "100% cotton tee with white distressed flag back and 1776 front",
-      "price": 25,
-      "stock": 25,
-      "threshold": 5,
-      "image": "https://i.imgur.com/E8IvDlp.png"
-    },
-    {
-      "id": "beanie#1",
-      "name": "Battalion Beanie",
-      "description": "Green Battalion insignia beanie. Keeps your dome warm",
-      "price": 15,
-      "stock": 20,
-      "threshold": 5,
-      "image": "https://i.imgur.com/jcRiryv.png"
-    },
-    {
-      "id": "AmericanFlag #1",
-      "name": "250 year American Flag",
-      "description": "Celebrate American Pride with this high quality wall flag",
-      "price": 75,
+      "id": "potato",
+      "name": "Potato",
+      "description": "Potato.",
+      "price": 4,
       "stock": 10,
       "threshold": 2,
-      "image": "https://i.imgur.com/2ghAYKK.png"
-    },
-    {
-      "id": "Tumbler #1",
-      "name": "Member Tumbler",
-      "description": "Exclusive for Patched members. Black steel insulated tumbler featuring Battalion logo",
-      "price": 25,
-      "stock": 20,
-      "threshold": 5,
-      "image": "https://i.imgur.com/cg1nJ7e.png"
+      "image": "",
+      "sizes": {
+        "S": 2,
+        "M": 2,
+        "L": 2,
+        "XL": 2,
+        "2XL": 1,
+        "3XL": 1
+      }
     }
   ],
+
   "orders": []
 }
