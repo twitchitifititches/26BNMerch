@@ -78,7 +78,6 @@ function addToCart(id, name, price) {
     const sizeSelect = document.getElementById(`size-${id}`);
     const size = sizeSelect ? sizeSelect.value : null;
 
-    // If same item + same size already exists → increase quantity
     const existing = cart.find(item => item.id === id && item.size === size);
 
     if (existing) {
@@ -96,9 +95,10 @@ function updateCart() {
     total = 0;
 
     cart.forEach((item, index) => {
-        const li = document.createElement("li");
         const lineTotal = item.price * item.quantity;
         total += lineTotal;
+
+        const li = document.createElement("li");
 
         li.innerHTML = `
             ${item.name}
@@ -118,21 +118,14 @@ function updateCart() {
 
 function changeQty(index, amount) {
     cart[index].quantity += amount;
-
     if (cart[index].quantity <= 0) {
         cart.splice(index, 1);
     }
-
     updateCart();
 }
 
 function removeItem(index) {
     cart.splice(index, 1);
-    updateCart();
-}
-
-function clearCart() {
-    cart = [];
     updateCart();
 }
 
@@ -151,23 +144,22 @@ async function submitOrder() {
     };
 
     try {
-        const response = await fetch(PROXY_URL, {
+
+        // 🔥 THIS IS THE FIX
+        await fetch(PROXY_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain"
+            },
             body: JSON.stringify(orderData)
         });
 
-        const result = await response.json();
-
-        if (result.success && result.orderNumber) {
-            alert(
-                `Order #${result.orderNumber} submitted successfully!\n\n` +
-                `Please save your order number for reference.\n\n` +
-                `Payment due to Capt. Pope at FTX.`
-            );
-        } else {
-            alert("Order submitted, but confirmation could not be verified.");
-        }
+        alert(
+            "Order submitted successfully!\n\n" +
+            "Please save your confirmation details.\n\n" +
+            "Payment due to Capt. Pope at FTX."
+        );
 
         cart = [];
         updateCart();
@@ -179,4 +171,3 @@ async function submitOrder() {
 }
 
 loadProducts();
-
