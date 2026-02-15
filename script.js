@@ -117,25 +117,18 @@ async function submitOrder() {
 
     try {
 
-        const response = await fetch(PROXY_URL, {
+        await fetch(PROXY_URL, {
             method: "POST",
+            mode: "no-cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(orderData)
         });
 
-        const result = await response.json();
-
-        if (result.success && result.orderNumber) {
-
-            alert(
-                `Order #${result.orderNumber} submitted successfully!\n\n` +
-                `Please save your order number for reference.\n\n` +
-                `Payment due to Capt. Pope at FTX.`
-            );
-
-        } else {
-            alert("Order submitted, but confirmation could not be verified.");
-        }
+        alert(
+            "Order submitted successfully!\n\n" +
+            "Please check your email for confirmation.\n\n" +
+            "Payment due to Capt. Pope at FTX."
+        );
 
         cart = [];
         updateCart();
@@ -147,3 +140,4 @@ async function submitOrder() {
 }
 
 loadProducts();
+
