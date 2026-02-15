@@ -153,14 +153,14 @@ async function submitOrder() {
     try {
         await fetch(PROXY_URL, {
             method: "POST",
-            mode: "no-cors",   // 🔥 THIS IS THE FIX
-            headers: { "Content-Type": "application/json" },
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain" }, // ✅ changed
             body: JSON.stringify(orderData)
         });
 
         alert(
             "Order submitted successfully.\n\n" +
-            "Please wait for confirmation email.\n\n" +
+            "You will receive an email confirmation shortly.\n\n" +
             "Payment due to Capt. Pope at FTX."
         );
 
@@ -173,8 +173,4 @@ async function submitOrder() {
     }
 }
 
-
-
 loadProducts();
-
-
