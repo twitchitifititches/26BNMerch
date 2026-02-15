@@ -8,14 +8,14 @@
       "threshold": 5,
       "image": "https://i.imgur.com/QWCcIyl.png",
       "sizes": {
-        "S": 2,
+        "S": 1,
         "M": 3,
         "L": 10,
         "XL": 10,
         "2XL": 10,
-        "3XL": 5
+        "3XL": 4
       },
-      "stock": 40
+      "stock": 38
     },
     {
       "id": "Beanie#1",
@@ -25,9 +25,9 @@
       "threshold": 5,
       "image": "https://i.imgur.com/jcRiryv.png",
       "sizes": {
-        "OSFA": 30
+        "OSFA": 29
       },
-      "stock": 30
+      "stock": 29
     },
     {
       "id": "Tumbler#1",
@@ -36,7 +36,7 @@
       "price": 20,
       "threshold": 5,
       "image": "https://i.imgur.com/cg1nJ7e.png",
-      "stock": 20
+      "stock": 19
     },
     {
       "id": "shirt#1",
@@ -50,10 +50,10 @@
         "M": 3,
         "L": 10,
         "XL": 10,
-        "2XL": 10,
+        "2XL": 9,
         "3XL": 5
       },
-      "stock": 40
+      "stock": 39
     },
     {
       "id": "Flag#1",
@@ -62,7 +62,7 @@
       "price": 75,
       "threshold": 2,
       "image": "https://i.imgur.com/p09CXKy.png",
-      "stock": 4
+      "stock": 3
     }
   ],
   "orders": [
@@ -80,7 +80,57 @@
       ],
       "total": 75,
       "timestamp": "2026-02-15T21:18:46.786Z"
+    },
+    {
+      "orderNumber": 1002,
+      "customer": "Krios Test Order",
+      "items": [
+        {
+          "id": "hoodie",
+          "name": "Heavyweight Olive Drab Hoodie",
+          "price": 40,
+          "quantity": 1,
+          "size": "S"
+        },
+        {
+          "id": "hoodie",
+          "name": "Heavyweight Olive Drab Hoodie",
+          "price": 40,
+          "quantity": 1,
+          "size": "3XL"
+        },
+        {
+          "id": "Beanie#1",
+          "name": "Battalion Beanie",
+          "price": 10,
+          "quantity": 1,
+          "size": "OSFA"
+        },
+        {
+          "id": "Tumbler#1",
+          "name": "26th Battalion Tumbler",
+          "price": 20,
+          "quantity": 1,
+          "size": null
+        },
+        {
+          "id": "shirt#1",
+          "name": "Green 26 BN T",
+          "price": 15,
+          "quantity": 1,
+          "size": "2XL"
+        },
+        {
+          "id": "Flag#1",
+          "name": "250 Year American Wall Flag",
+          "price": 75,
+          "quantity": 1,
+          "size": null
+        }
+      ],
+      "total": 200,
+      "timestamp": "2026-02-15T23:57:43.744Z"
     }
   ],
-  "lastOrderNumber": 1001
+  "lastOrderNumber": 1002
 }
