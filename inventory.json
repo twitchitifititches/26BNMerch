@@ -62,8 +62,25 @@
       "price": 75,
       "threshold": 2,
       "image": "https://i.imgur.com/p09CXKy.png",
-      "stock": 5
+      "stock": 4
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "orderNumber": 1001,
+      "customer": "TelegramUser",
+      "items": [
+        {
+          "id": "Flag#1",
+          "name": "250 Year American Wall Flag",
+          "price": 75,
+          "quantity": 1,
+          "size": null
+        }
+      ],
+      "total": 75,
+      "timestamp": "2026-02-15T21:18:46.786Z"
+    }
+  ],
+  "lastOrderNumber": 1001
 }
