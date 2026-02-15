@@ -1,7 +1,7 @@
 let cart = [];
 let total = 0;
 
-const PROXY_URL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+const PROXY_URL = "https://script.google.com/macros/s/AKfycbyEk3khZc36ezbMMTSVIBYv-Jh_3jN6-R7C-541X8kO70_6xuDRLnA85S8DwMEb4uXC/exec";
 const INVENTORY_URL = "https://raw.githubusercontent.com/26thBN/26BNMerch/main/inventory.json";
 
 async function loadProducts() {
@@ -113,3 +113,4 @@ async function submitOrder() {
 }
 
 loadProducts();
+
