@@ -71,10 +71,7 @@
       "price": 5000,
       "threshold": 10,
       "image": "",
-      "sizes": {
-        "OSFA": 0
-      },
-      "stock": 0
+      "stock": 5000
     }
   ],
   "orders": []
